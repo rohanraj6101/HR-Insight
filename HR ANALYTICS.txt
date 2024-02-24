@@ -1,0 +1,80 @@
+HR ANALYTICS
+
+INSIGHTS FROM CLIENT
+*WORKING Prefrence of people(frequent wfh on monday or leave on may , what is the reason behiond that?)
+*How much percent of people present in a week or month
+* find the sick leave percentage and major reasons they give
+
+
+*get data from excel
+1)load all the sheet if the sheet contain same data set(like same columns, rows etc)
+2)On the file right click transform data
+3) u will go to power query(now u can do some transformation on sheet)
+4) ctrl+Alt+V   :  to activate paste special option (helps to convert date from row to column by selcting "values" and "Transpose" in it)
+5) create a duplicate by right click so that "when u add next month data it will atomatically update here" and "format also like ETL"
+6) select first sheet 
+
+
+7) Take Date column and remove all column by right clique on date column
+8) remove changed type in applied steps bec PBI atomatically do some transformation which we want and sometimes we dont want.
+9) Make first row as header (it will deleted  in the 14th step(on template) so dont add this step
+10) remove 1st row bec we dont want that data
+11)rename 1st and 2nd column as employee_id and name
+
+
+12)what we are acheiving we will do all the process for 1 sheet and other sheet will atomatically update(we have to do some transformation to do this)
+
+A) transform date from row to column
+-  transform + unpivot column + select other column except date + unpivot other column(coverting multiple date columns to one date column: it helps while creating visualization)
+
+B)some text value present in date column delete that by
+-  converting column type to date + you will get errors when you done this on "text contain rows" + column right click "remove errors"
+- or by manually filter that one
+
+c) in home manage parameter + new parameter + name: worksheet , Type: text , curent value= sheetname(Apr 2022)
+
+d)go to template (which is dulicated from main sheet) 
+-  go to applied step + select first sheet(which is only selected Apr 2022)(1st applied step)
+-  on 1st applied step go to setting slect "work sheet" by removing "type" ABC
+
+e) on template right click go to create function and give function name : GetData   (like stored procedure in sql)
+-  like reusability of code or function to Every month
+
+
+13) go to original sheet and remove un necessary columns like text sheet
+14)select main table or sheet + go to add column + custom invoke function + new column name:GetData , function query: getData
+15) Expand all the column(in new table)
+14) remove un necessary column
+15) change column type to text and date respectively
+16)we dont get dat on sunday in excel
+17) change file name as Final data(main table)
+18)disable load on template
+19) go to home and load to powerBI desktop
+
+
+
+creating matrixs(measures in powerBI) using DAX(quantitative assesments which will help us to make decision)
+20)create column of (% of work from home) (% of sick leave)
+21) create above measure on seperate table : go to enter data and set name as measure table + load
+
+22)find Total working days (by subracting WO:weekly off, HO:holiday off)
+23)present days(in 3 months how many days they present)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
